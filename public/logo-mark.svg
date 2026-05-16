@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Dark navy background -->
+  <rect width="48" height="48" rx="11" fill="#0d2233"/>
+
+  <!-- Subtle blue glow -->
+  <circle cx="44" cy="4" r="22" fill="#78B3CE" opacity="0.15"/>
+
+  <!-- Newspaper / page shape -->
+  <rect x="11" y="10" width="26" height="30" rx="4" fill="white"/>
+
+  <!-- Orange header bar -->
+  <rect x="11" y="10" width="26" height="9" rx="4" fill="#F96E2A"/>
+  <rect x="11" y="15" width="26" height="4" fill="#F96E2A"/>
+
+  <!-- White live dot -->
+  <circle cx="24" cy="14.5" r="2.2" fill="white"/>
+
+  <!-- Content lines -->
+  <rect x="15.5" y="24" width="17" height="2.5" rx="1.25" fill="#C9E6F0"/>
+  <rect x="15.5" y="28.5" width="13" height="2.5" rx="1.25" fill="#C9E6F0"/>
+  <rect x="15.5" y="33" width="17" height="2.5" rx="1.25" fill="#C9E6F0"/>
+
+  <!-- Left signal arc -->
+  <path d="M8.5 24.5 Q8.5 17 13.5 12.5" stroke="#78B3CE" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Right signal arc -->
+  <path d="M39.5 24.5 Q39.5 17 34.5 12.5" stroke="#78B3CE" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Orange bottom accent -->
+  <rect x="11" y="43" width="26" height="3" rx="1.5" fill="#F96E2A"/>
+</svg>
