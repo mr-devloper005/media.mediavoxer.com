@@ -2,76 +2,76 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Press Media Intelligence',
+    tagline: 'Press Release Network',
   },
   footer: {
     tagline: 'Publish smarter. Reach wider.',
   },
   hero: {
-    badge: 'Media wire',
-    title: ['The News Starts Here'],
+    badge: 'Live Press Network',
+    title: ['Where News Breaks First'],
     description:
-      'Publish company announcements, product updates, leadership changes, and media stories with a clean editorial experience.',
+      'Publish company announcements, product launches, leadership updates, and media stories through a modern newsroom built for clarity and trust.',
     primaryCta: {
-      label: 'Explore Latest News',
-      href: '/media',
+      label: 'Explore Newsroom',
+      href: '/updates',
     },
     secondaryCta: {
-      label: 'View Pricing',
-      href: '/pricing',
+      label: 'Submit a Release',
+      href: '/register',
     },
-    searchPlaceholder: 'Search press media',
+    searchPlaceholder: 'Search press releases...',
     focusLabel: 'Trending',
-    featureCardBadge: 'press note',
+    featureCardBadge: 'Press Release',
     featureCardTitle: 'Verified updates from brands and teams.',
     featureCardDescription:
-      'The homepage keeps breaking releases and recent updates discoverable without cluttering the reading experience.',
+      'The newsroom keeps breaking releases and recent updates discoverable without cluttering the reading experience.',
   },
   home: {
     metadata: {
-      title: 'Latest press media and newsroom updates',
+      title: 'Latest Press Releases & Newsroom Updates',
       description:
-        'Discover recent press media, company announcements, and media updates on ViroBuzz.com.',
-      openGraphTitle: 'Latest press media and newsroom updates',
+        'Discover recent press releases, company announcements, and media updates on Media Mediavoxer.',
+      openGraphTitle: 'Latest Press Releases & Newsroom Updates',
       openGraphDescription:
-        'A modern media publishing experience for announcements, updates, and newsroom stories.',
-      keywords: ['press media', 'newsroom', 'company announcements', 'media updates', 'virobuzz'],
+        'A modern press release publishing platform for announcements, updates, and newsroom stories.',
+      keywords: ['press release', 'newsroom', 'company announcements', 'media updates', 'media mediavoxer'],
     },
-    introBadge: 'About ViroBuzz',
-    introTitle: 'A modern press-release destination for teams that need visibility.',
+    introBadge: 'About Media Mediavoxer',
+    introTitle: 'A modern press release destination for teams that need visibility.',
     introParagraphs: [
-      'ViroBuzz.com helps companies and agencies distribute verified updates in a format built for readers, journalists, and search engines.',
+      'Media Mediavoxer helps companies and agencies distribute verified updates in a format built for readers, journalists, and search engines.',
       'From headlines to full story pages, every surface is designed for fast scanning and high trust.',
       'The platform keeps publishing simple while giving your stories stronger structure and discoverability.',
     ],
     sideBadge: 'What you get',
     sidePoints: [
-      'Structured press media listing with filters.',
+      'Structured press release listing with filters.',
       'Clean article pages with featured media and sharing.',
-      'Flexible pricing plans for distribution needs.',
+      'Flexible distribution plans for all team sizes.',
       'Brand-ready publishing style with modern UI.',
     ],
     primaryLink: {
       label: 'Open Newsroom',
-      href: '/media',
+      href: '/updates',
     },
     secondaryLink: {
-      label: 'See Plans',
-      href: '/pricing',
+      label: 'Submit a Release',
+      href: '/register',
     },
   },
   cta: {
     badge: 'Ready to publish',
-    title: 'Share your next press media with confidence.',
+    title: 'Share your next press release with confidence.',
     description:
-      'Use ViroBuzz.com to publish announcements quickly and keep your newsroom discoverable across devices.',
+      'Use Media Mediavoxer to publish announcements quickly and keep your newsroom discoverable across devices.',
     primaryCta: {
       label: 'Start Publishing',
-      href: '/contact',
+      href: '/register',
     },
     secondaryCta: {
       label: 'Browse Newsroom',
-      href: '/media',
+      href: '/updates',
     },
   },
   taskSectionHeading: 'Latest releases',

@@ -2,91 +2,89 @@
 
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
-import { Search } from 'lucide-react'
+import { ArrowRight, Search, SlidersHorizontal } from 'lucide-react'
 import type { SitePost } from '@/lib/site-connector'
 import { ContentImage } from '@/components/shared/content-image'
 
-type Props = {
-  posts: SitePost[]
-}
+type Props = { posts: SitePost[] }
 
 function categoryOf(post: SitePost) {
-  const content = post.content && typeof post.content === 'object' ? (post.content as Record<string, unknown>) : {}
-  const value = typeof content.category === 'string' && content.category.trim() ? content.category.trim() : 'General'
-  return value
+  const c = post.content && typeof post.content === 'object' ? (post.content as Record<string, unknown>) : {}
+  return typeof c.category === 'string' && c.category.trim() ? c.category.trim() : 'General'
 }
 
-function dateFilter(dateValue: string | undefined, range: string) {
+function dateFilter(dateValue: string | undefined | null, range: string) {
   if (!dateValue) return range === 'all'
   if (range === 'all') return true
   const now = Date.now()
-  const postTime = new Date(dateValue).getTime()
-  if (!Number.isFinite(postTime)) return true
-  const day = 1000 * 60 * 60 * 24
-  if (range === '7d') return now - postTime <= 7 * day
-  if (range === '30d') return now - postTime <= 30 * day
-  if (range === '365d') return now - postTime <= 365 * day
+  const t = new Date(dateValue).getTime()
+  if (!Number.isFinite(t)) return true
+  const day = 86400000
+  if (range === '7d')   return now - t <= 7 * day
+  if (range === '30d')  return now - t <= 30 * day
+  if (range === '365d') return now - t <= 365 * day
   return true
 }
 
-function imageFor(index: number) {
-  const images = [
-    'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
-    'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80',
-  ]
-  return images[index % images.length]
-}
+const IMAGES = [
+  'https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=800&q=80',
+]
 
 export function MediaListingClient({ posts }: Props) {
-  const [query, setQuery] = useState('')
-  const [category, setCategory] = useState('all')
+  const [query,     setQuery]     = useState('')
+  const [category,  setCategory]  = useState('all')
   const [dateRange, setDateRange] = useState('all')
-  const categories = useMemo(() => ['all', ...Array.from(new Set(posts.map((item) => categoryOf(item))))], [posts])
 
-  const filtered = useMemo(() => {
-    return posts.filter((post) => {
-      const q = query.trim().toLowerCase()
-      const matchQuery =
-        !q ||
-        post.title.toLowerCase().includes(q) ||
-        (post.summary || '').toLowerCase().includes(q) ||
-        categoryOf(post).toLowerCase().includes(q)
-      const matchCategory = category === 'all' || categoryOf(post) === category
-      const matchDate = dateFilter(post.publishedAt, dateRange)
-      return matchQuery && matchCategory && matchDate
-    })
-  }, [posts, query, category, dateRange])
+  const categories = useMemo(
+    () => ['all', ...Array.from(new Set(posts.map(categoryOf)))],
+    [posts],
+  )
+
+  const filtered = useMemo(() => posts.filter((post) => {
+    const q = query.trim().toLowerCase()
+    const matchQ = !q || post.title.toLowerCase().includes(q) || (post.summary || '').toLowerCase().includes(q) || categoryOf(post).toLowerCase().includes(q)
+    const matchC = category === 'all' || categoryOf(post) === category
+    const matchD = dateFilter(post.publishedAt ?? undefined, dateRange)
+    return matchQ && matchC && matchD
+  }), [posts, query, category, dateRange])
 
   return (
     <>
-      <section className="mb-8 rounded-3xl border border-[#818fb4]/30 bg-white p-5 shadow-[0_16px_44px_rgba(54,48,98,0.1)] sm:p-6">
-        <div className="grid gap-3 md:grid-cols-[1fr_200px_200px]">
+      {/* ── Filter bar ── */}
+      <div className="mb-8 overflow-hidden rounded-[1.5rem] bg-white shadow-[0_8px_30px_rgba(13,34,51,0.08)]">
+        {/* header strip */}
+        <div className="flex items-center gap-2 border-b border-[#C9E6F0] bg-[#0d2233] px-5 py-3">
+          <SlidersHorizontal className="h-4 w-4 text-[#78B3CE]" />
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#C9E6F0]">Filter Releases</span>
+        </div>
+        <div className="grid gap-3 p-5 md:grid-cols-[1fr_200px_200px]">
           <label className="relative block">
-            <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#69739d]" />
+            <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#78B3CE]" />
             <input
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              className="h-12 w-full rounded-xl border border-[#c8cfe5] bg-[#f8f9ff] pl-10 pr-4 text-sm text-[#22284f] outline-none ring-[#435585]/30 focus:ring-2"
-              placeholder="Search press media..."
+              onChange={(e) => setQuery(e.target.value)}
+              className="h-12 w-full rounded-xl border border-[#C9E6F0] bg-[#FBF8EF] pl-10 pr-4 text-sm text-[#0d2233] outline-none transition focus:border-[#F96E2A] focus:ring-2 focus:ring-[#F96E2A]/20"
+              placeholder="Search press releases..."
             />
           </label>
           <select
             value={category}
-            onChange={(event) => setCategory(event.target.value)}
-            className="h-12 rounded-xl border border-[#c8cfe5] bg-[#f8f9ff] px-3 text-sm text-[#22284f] outline-none ring-[#435585]/30 focus:ring-2"
+            onChange={(e) => setCategory(e.target.value)}
+            className="h-12 rounded-xl border border-[#C9E6F0] bg-[#FBF8EF] px-3 text-sm text-[#0d2233] outline-none transition focus:border-[#F96E2A] focus:ring-2 focus:ring-[#F96E2A]/20"
           >
-            {categories.map((item) => (
-              <option key={item} value={item}>
-                {item === 'all' ? 'All categories' : item}
-              </option>
+            {categories.map((c) => (
+              <option key={c} value={c}>{c === 'all' ? 'All categories' : c}</option>
             ))}
           </select>
           <select
             value={dateRange}
-            onChange={(event) => setDateRange(event.target.value)}
-            className="h-12 rounded-xl border border-[#c8cfe5] bg-[#f8f9ff] px-3 text-sm text-[#22284f] outline-none ring-[#435585]/30 focus:ring-2"
+            onChange={(e) => setDateRange(e.target.value)}
+            className="h-12 rounded-xl border border-[#C9E6F0] bg-[#FBF8EF] px-3 text-sm text-[#0d2233] outline-none transition focus:border-[#F96E2A] focus:ring-2 focus:ring-[#F96E2A]/20"
           >
             <option value="all">Any date</option>
             <option value="7d">Last 7 days</option>
@@ -94,34 +92,57 @@ export function MediaListingClient({ posts }: Props) {
             <option value="365d">Last 12 months</option>
           </select>
         </div>
-      </section>
+      </div>
 
+      {/* ── Results count ── */}
+      <p className="mb-5 text-sm font-semibold text-[#78B3CE]">
+        {filtered.length} release{filtered.length !== 1 ? 's' : ''} found
+      </p>
+
+      {/* ── Cards grid ── */}
       {filtered.length ? (
-        <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((post, index) => (
             <Link
               key={post.id}
               href={`/updates/${post.slug}`}
-              className="group overflow-hidden rounded-2xl border border-[#818fb4]/25 bg-white shadow-[0_15px_40px_rgba(54,48,98,0.08)] transition hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(54,48,98,0.14)]"
+              className="group relative overflow-hidden rounded-[1.5rem] bg-white shadow-[0_8px_28px_rgba(13,34,51,0.08)] transition hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(13,34,51,0.14)]"
             >
+              {/* image */}
               <div className="relative h-48 overflow-hidden">
-                <ContentImage src={imageFor(index)} alt={post.title} fill className="object-cover transition duration-500 group-hover:scale-105" />
+                <ContentImage
+                  src={IMAGES[index % IMAGES.length]}
+                  alt={post.title}
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d2233]/50 to-transparent" />
+                {/* category pill */}
+                <span className="absolute bottom-3 left-3 rounded-full bg-[#F96E2A] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white">
+                  {categoryOf(post)}
+                </span>
               </div>
+
+              {/* body */}
               <div className="p-5">
-                <div className="flex items-center gap-2">
-                  <span className="rounded-full bg-[#eef1fa] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#404d81]">
-                    {categoryOf(post)}
-                  </span>
-                </div>
-                <h2 className="mt-3 line-clamp-2 text-xl font-semibold leading-snug text-[#242a52]">{post.title}</h2>
-                <p className="mt-3 line-clamp-3 text-sm leading-7 text-[#60698f]">{post.summary || 'Read the complete press media details.'}</p>
+                <h2 className="line-clamp-2 text-lg font-black leading-snug text-[#0d2233]">{post.title}</h2>
+                <p className="mt-2 line-clamp-2 text-sm leading-6 text-[#4a6a7a]">
+                  {post.summary || 'Read the complete press release details.'}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-[#78B3CE] transition group-hover:gap-2.5 group-hover:text-[#F96E2A]">
+                  Read more <ArrowRight className="h-3.5 w-3.5" />
+                </span>
               </div>
+
+              {/* orange bottom slide-in */}
+              <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-[#F96E2A] transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
-        </section>
+        </div>
       ) : (
-        <div className="rounded-2xl border border-dashed border-[#818fb4]/40 bg-white p-10 text-center text-sm text-[#66729e]">
-          No press media match your current filters.
+        <div className="rounded-[1.5rem] border-2 border-dashed border-[#C9E6F0] bg-white p-14 text-center">
+          <p className="text-base font-bold text-[#78B3CE]">No press releases match your filters.</p>
+          <p className="mt-1 text-sm text-[#a8c8d8]">Try adjusting your search or category.</p>
         </div>
       )}
     </>
