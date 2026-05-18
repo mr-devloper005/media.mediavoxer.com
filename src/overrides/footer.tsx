@@ -2,6 +2,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { SITE_CONFIG } from '@/lib/site-config'
+import { fetchTaskPosts } from '@/lib/task-data'
+import { CATEGORY_OPTIONS, normalizeCategory } from '@/lib/categories'
 
 export const FOOTER_OVERRIDE_ENABLED = true
 
