@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { NavbarShell } from '@/components/shared/navbar-shell'
 import { Footer } from '@/components/shared/footer'
 
@@ -85,30 +85,6 @@ export function ContactPageOverride() {
 
           {/* ── Sidebar ── */}
           <aside className="space-y-4">
-            {/* Contact info card */}
-            <div className="overflow-hidden rounded-[1.5rem] bg-white shadow-[0_10px_30px_rgba(13,34,51,0.08)]">
-              <div className="bg-[#0d2233] px-6 py-5">
-                <h3 className="font-black text-white">Get in Touch</h3>
-              </div>
-              <div className="space-y-4 p-6">
-                {[
-                  { icon: Mail,   label: 'Email',  value: 'press@mediavoxer.com' },
-                  { icon: Phone,  label: 'Phone',  value: '+1 (800) 555-0199' },
-                  { icon: MapPin, label: 'Office', value: 'Media District, New York, NY' },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-start gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#F96E2A]/10">
-                      <item.icon className="h-4 w-4 text-[#F96E2A]" />
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#78B3CE]">{item.label}</p>
-                      <p className="mt-0.5 text-sm font-semibold text-[#0d2233]">{item.value}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             {/* Response time card */}
             <div className="overflow-hidden rounded-[1.5rem] bg-[#0d2233]">
               <div className="h-1 bg-[#F96E2A]" />

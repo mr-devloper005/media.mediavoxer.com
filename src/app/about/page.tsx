@@ -29,10 +29,10 @@ const stats = [
 ]
 
 const team = [
-  { name: 'Priya Sharma',   role: 'Head of Editorial',    initial: 'P' },
-  { name: 'James Okafor',   role: 'Distribution Lead',    initial: 'J' },
-  { name: 'Lena Müller',    role: 'Product Design',       initial: 'L' },
-  { name: 'Carlos Rivera',  role: 'Engineering',          initial: 'C' },
+  { name: 'Arjun Kapoor',   role: 'Head of Editorial',    initial: 'A' },
+  { name: 'Sarah Mitchell', role: 'Distribution Lead',    initial: 'S' },
+  { name: 'Ravi Desai',     role: 'Product Design',       initial: 'R' },
+  { name: 'Emma Clarke',    role: 'Engineering',          initial: 'E' },
 ]
 
 export default function AboutPage() {
