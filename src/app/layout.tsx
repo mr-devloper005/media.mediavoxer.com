@@ -23,6 +23,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <head>
         {googleFontsHref ? <link rel="stylesheet" href={googleFontsHref} /> : null}
+        <link rel="icon" href="/icon" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-icon" sizes="180x180" />
+        <link rel="shortcut icon" href="/icon" />
       </head>
       <body
         data-site-shell={recipe.homeLayout}
