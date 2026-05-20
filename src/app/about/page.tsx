@@ -44,7 +44,7 @@ export default function AboutPage() {
         {/* ── Hero header — steel blue gradient (matches home page) ── */}
         <section
           className="relative overflow-hidden py-16"
-          style={{ background: 'linear-gradient(135deg, #1a4a6b 0%, #78B3CE 60%, #5a9ab8 100%)' }}
+          style={{ background: 'linear-gradient(160deg, #0d2233 0%, #1a4a6b 35%, #78B3CE 75%, #8ec5d6 100%)' }}
         >
           {/* decorative glows */}
           <div className="pointer-events-none absolute -top-20 right-0 h-80 w-80 rounded-full bg-[#F96E2A] opacity-[0.12] blur-[90px]" />
