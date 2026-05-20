@@ -9,7 +9,6 @@ import type { TaskKey } from '@/lib/site-config'
 import type { SitePost } from '@/lib/site-connector'
 import { SITE_CONFIG } from '@/lib/site-config'
 import { formatRichHtml, RichContent } from '@/components/shared/rich-content'
-import { ContentImage } from '@/components/shared/content-image'
 
 export const TASK_DETAIL_PAGE_OVERRIDE_ENABLED = true
 
@@ -32,6 +31,7 @@ export async function TaskDetailPageOverride({ slug }: { task: TaskKey; slug: st
   const content = (post.content || {}) as Record<string, unknown>
   const html = formatRichHtml((content.body as string) || post.summary || '', 'Post body will appear here.')
   const subtitle = typeof content.subtitle === 'string' ? content.subtitle : post.summary
+  const hero = imageFor(0)
 
   return (
     <div className="min-h-screen bg-[#FBF8EF] text-[#0d2233]">
