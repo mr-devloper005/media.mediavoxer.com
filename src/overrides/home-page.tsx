@@ -68,14 +68,13 @@ export async function HomePageOverride() {
       <main>
 
         {/* ═══════════════════════════════════════════════
-            HERO — steel blue gradient, clearly distinct from white navbar
+            HERO — gradient flows from dark navy header
         ═══════════════════════════════════════════════ */}
-        <section className="relative overflow-hidden" style={{background: 'linear-gradient(135deg, #1a4a6b 0%, #78B3CE 50%, #5a9ab8 100%)'}}>
-          {/* decorative shapes */}
-          <div className="pointer-events-none absolute -top-20 -right-20 h-[500px] w-[500px] rounded-full bg-[#F96E2A] opacity-[0.15] blur-[100px]" />
-          <div className="pointer-events-none absolute bottom-0 -left-10 h-72 w-72 rounded-full bg-[#0d2233] opacity-20 blur-[80px]" />
-          {/* dot pattern overlay */}
-          <div className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        <section className="relative overflow-hidden" style={{background: 'linear-gradient(160deg, #0d2233 0%, #1a4a6b 35%, #78B3CE 75%, #8ec5d6 100%)'}}>
+          {/* orange glow top-right */}
+          <div className="pointer-events-none absolute -top-20 -right-20 h-[500px] w-[500px] rounded-full bg-[#F96E2A] opacity-[0.13] blur-[100px]" />
+          {/* dot pattern */}
+          <div className="pointer-events-none absolute inset-0 opacity-[0.05]"
             style={{backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '28px 28px'}} />
 
           <div className="relative mx-auto max-w-7xl px-4 pt-14 pb-0 sm:px-6 lg:pt-20">
